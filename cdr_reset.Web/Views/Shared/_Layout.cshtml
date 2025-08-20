@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/Bootstrap/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/CSS")
+    @Styles.Render("~/Content/FontAwesome")
+    <link rel="icon" type="image/x-icon" href="~/Content/Images/favicon.png" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light fixed-top">
+        <div class="container-fluid">
+            <a href="@Url.Action("Dashboard", "Home")" class="navbar-brand text-dark">CDR Maintenance</a>
+
+            <button type="submit" class="logout-container btn p-0" data-toggle="modal" data-target="#modal-logout">
+                <span class="logout-icon">
+                    <i class="fas fa-arrow-right-from-bracket"></i>
+                </span>
+                <span class="logout-label">
+                    Log out
+                </span>
+            </button>
+
+        </div>
+    </nav>
+
+    <div class="container-fluid body-content">
+        @RenderBody()
+    </div>
+
+
+    <div class="modal fade" id="modal-logout" data-keyboard="false" data-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <span>Log out of your account?</span>
+                </div>
+
+                <div class="modal-footer d-flex">
+                    <a data-dismiss="modal" class="mr-3 text-dark">Cancel</a>
+                    @using (Html.BeginForm("Logout", "Home", FormMethod.Post, new { @class = "logout-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="logout-container btn p-0">
+                            <span class="logout-label">
+                                Log out
+                            </span>
+                        </button>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/Bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

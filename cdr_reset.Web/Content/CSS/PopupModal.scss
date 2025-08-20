@@ -1,0 +1,44 @@
+﻿body {
+    .modal {
+        .modal-dialog {
+            .modal-content {
+                .modal-header {
+                    border-bottom: none !important;
+
+                    .close {
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                }
+
+                .modal-body {
+                    p {
+                        font-size: 14px;
+                        margin-bottom: 5px;
+                    }
+
+                    .instruction-container {
+                        .instructions-title 
+                        {
+                            
+                        }
+                        p {
+                            font-size: 12px;
+                            margin-bottom: 5px;
+                        }
+                    }
+
+                }
+
+                .modal-footer {
+                    border-top: none !important;
+
+                    button {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}

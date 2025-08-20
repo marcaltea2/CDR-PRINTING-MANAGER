@@ -1,0 +1,30 @@
+﻿@using cdr_reset.Core.Models
+@model IEnumerable<BusinessUnitName>
+
+@{
+    var selected = Request.QueryString["selectedBusinessUnit"];
+}
+
+<div class="dropdown-container mb-3">
+    <div class="form-inline">
+        <form method="get" action="@Url.Action("Dashboard", "Home")">
+            <!-- Preserve search input -->
+            <input type="hidden" name="searchTerm" value="@Request.QueryString["searchTerm"]" />
+
+            <select class="form-select form-select-sm form-control form-control-sm"
+                    name="selectedBusinessUnit" onchange="this.form.submit()">
+                <option value="Select Business Unit" @(selected == "Select Business Unit" ? "selected" : "")>Select Business Unit</option>
+                <option value="AllPlants" @(selected == "AllPlants" ? "selected" : "")>All Plants</option>
+
+                @foreach (var businessUnit in Model)
+                {
+                    <option value="@businessUnit.name" @(selected == businessUnit.name ? "selected" : "")>
+                        @businessUnit.name
+                    </option>
+                }
+            </select>
+        </form>
+
+    </div>
+</div>
+

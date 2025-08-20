@@ -1,0 +1,20 @@
+﻿<div class="searchbar-container mb-3">
+    @using (Html.BeginForm("Dashboard", "Home", FormMethod.Get))
+    {
+        <div class="form-inline">
+            <input type="text" name="searchTerm" class="form-control form-control-sm"
+                   placeholder="Search Document Number" autocomplete="off"
+                   value="@Request.QueryString["searchTerm"]" />
+
+            <!-- Preserve dropdown selection -->
+            <input type="hidden" name="selectedBusinessUnit" value="@Request.QueryString["selectedBusinessUnit"]" />
+
+            <div class="search-btn">
+                <button class="btn btn-sm my-2 my-sm-0" type="submit">
+                    <i class="fas fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </div>
+    }
+</div>
+

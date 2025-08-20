@@ -1,0 +1,22 @@
+﻿[
+  {
+    "outputFile": "Content/CSS/Dashboard.css",
+    "inputFile": "Content/CSS/Dashboard.scss"
+  },
+  {
+    "outputFile": "Content/CSS/SearchBar.css",
+    "inputFile": "Content/CSS/SearchBar.scss"
+  },
+  {
+    "outputFile": "Content/CSS/PopupModal.css",
+    "inputFile": "Content/CSS/PopupModal.scss"
+  },
+  {
+    "outputFile": "Content/CSS/Dropdown.css",
+    "inputFile": "Content/CSS/Dropdown.scss"
+  },
+  {
+    "outputFile": "Content/CSS/Layout.css",
+    "inputFile": "Content/CSS/Layout.scss"
+  }
+]

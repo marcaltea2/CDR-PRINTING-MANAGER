@@ -1,0 +1,41 @@
+﻿body {
+    .searchbar-container {
+        .form-inline {
+            display: flex;
+            width: 100%;
+
+            .form-control {
+                flex: 1;
+                max-width: 600px;
+                width: 100%;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                border-right: none;
+
+                &:focus {
+                    box-shadow: none;
+                    border-color: #cccccc;
+                }
+
+                &::-webkit-search-cancel-button {
+                    filter: invert(50%);
+                    cursor: pointer;
+                }
+            }
+
+            .search-btn {
+                button {
+                    border-color: #cccccc;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                    height: 100%;
+
+                    &:focus {
+                        outline: none;
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+}

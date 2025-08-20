@@ -1,0 +1,82 @@
+﻿:root {
+  /*colors*/
+  --grey-100: #FFFFFF;
+  --grey-200: #F7F7F7;
+  --grey-300: #EDEFF3;
+  --grey-400: #777F8A;
+  --grey-500: #191B1F;
+  --blue-100: #E8EFFD;
+  --blue-200: #89A9EF;
+  --blue-300: #3F74E7;
+  --blue-400: #2966E9;
+  --green-100: #d2f3da;
+  --green-200: #36cf57;
+  --yellow-100: #fff5c4;
+  --yellow-200: #ffb122; }
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; }
+
+ul, ol {
+  list-style: none !important; }
+
+a {
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: none; }
+
+.btn-primary,
+.btn-primary:hover {
+  background-color: var(--blue-400) !important;
+  border-color: var(--blue-400) !important; }
+
+body {
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  color: var(--grey-500); }
+  body .login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center; }
+    body .login-container .login-box {
+      padding: 10px; }
+      body .login-container .login-box .login-button {
+        border-radius: 50px;
+        padding: 10px; }
+      body .login-container .login-box .validation-message {
+        font-size: 12px !important; }
+        body .login-container .login-box .validation-message::marker {
+          display: none !important; }
+      body .login-container .login-box .form-group {
+        position: relative; }
+        body .login-container .login-box .form-group .form-control {
+          width: 100%;
+          padding: 1.5rem 0.75rem 0.5rem 1rem;
+          line-height: 1.25;
+          height: 3.5rem;
+          border-radius: 10px;
+          transition: border-color 0.3s ease; }
+          body .login-container .login-box .form-group .form-control:focus {
+            border-color: var(--blue-400);
+            outline: none;
+            box-shadow: none; }
+          body .login-container .login-box .form-group .form-control:focus + label {
+            top: 0.5rem;
+            font-size: 12px;
+            color: var(--blue-400); }
+          body .login-container .login-box .form-group .form-control:focus + label,
+          body .login-container .login-box .form-group .form-control:not(:placeholder-shown) + label {
+            top: 0.5rem;
+            font-size: 12px;
+            color: var(--blue-400); }
+        body .login-container .login-box .form-group label {
+          position: absolute;
+          top: 1rem;
+          left: 0.75rem;
+          color: var(--grey-400);
+          transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+          pointer-events: none;
+          padding: 0 0.25rem; }

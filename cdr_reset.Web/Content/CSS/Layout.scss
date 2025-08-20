@@ -1,0 +1,85 @@
+﻿:root {
+    /*colors*/
+    --grey-100: #FFFFFF;
+    --grey-200: #F7F7F7;
+    --grey-300: #EDEFF3;
+    --grey-400: #777F8A;
+    --grey-500: #191B1F;
+    --blue-100: #E8EFFD;
+    --blue-200: #89A9EF;
+    --blue-300: #3F74E7;
+    --blue-400: #2966E9;
+    --green-100: #d2f3da;
+    --green-200: #36cf57;
+    --yellow-100: #fff5c4;
+    --yellow-200: #ffb122;
+    --red-100: #ffb3b3;
+    --red-200: #ff0008;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+ul, ol {
+    list-style: none !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.btn-primary,
+.btn-primary:hover {
+    background-color: var(--blue-400) !important;
+    border-color: var(--blue-400) !important;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    color: var(--grey-500);
+
+    nav {
+
+
+        .container-fluid {
+            .logout-container {
+                cursor: pointer;
+                color: var(--grey-400);
+                font-size: 18px;
+
+                .logout-icon {
+                    margin-right: 5px;
+                }
+
+                &:focus {
+                    outline: none;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+
+    .modal {
+        .modal-content {
+            .modal-body {
+                font-size: 14px;
+            }
+
+            .modal-footer {
+                font-size: 14px;
+                cursor: pointer;
+                .logout-label {
+                    color: var(--red-200);
+                }
+            }
+        }
+    }
+}

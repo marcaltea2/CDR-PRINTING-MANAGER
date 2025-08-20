@@ -1,0 +1,119 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@using cdr_reset.Core.Models;
+@model cdr_reset.Web.Models.DashboardViewModel
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid container-table">
+
+    <div class="action-buttons d-flex flex-column flex-sm-row align-items-stretch gap">
+        <div class="searchbar flex-grow-1">
+            @Html.Partial("~/Views/Shared/Search/SearchBar.cshtml")
+        </div>
+        <div class="dropdown">
+            @Html.Partial("~/Views/Shared/Dropdown/Dropdown.cshtml", Model.BusinessUnits)
+        </div>
+    </div>
+
+
+
+
+    <div class="cdr_table table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Document Number</th>
+                    <th>Business Unit</th>
+                    <th>Times Printed</th>
+                    <th>Printed By</th>
+                    <th>Printed Date</th>
+                    <th>Re-printed By</th>
+                    <th>Re-printed Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.PrintLogs.Any())
+                {
+                    foreach (PrintLog cdr in Model.PrintLogs)
+                    {
+                        <tr class="cdr-row" data-document="@cdr.document_num">
+                            <td>@cdr.document_num</td>
+                            <td>@cdr.business_unit</td>
+                            <td>@cdr.times_printed</td>
+                            <td>@cdr.printed_by</td>
+                            <td>@cdr.printed_date</td>
+                            <td>@cdr.re_printed_by</td>
+                            <td>@cdr.re_printed_date</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="text-center">No data found.</td>  <!-- Display message if no records -->
+                    </tr>
+                }
+            </tbody>
+
+
+        </table>
+
+        <!-- Pagination Controls -->
+        <div class="pagination_section">
+            @Html.PagedListPager(Model.PrintLogs, page => Url.Action("Dashboard", new
+       {
+           page,
+           searchTerm = Request.QueryString["searchTerm"],
+           selectedBusinessUnit = Request.QueryString["selectedBusinessUnit"]
+       }),
+            new PagedListRenderOptions
+            {
+                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+                LinkToPreviousPageFormat = "Previous",
+                LinkToNextPageFormat = "Next"
+            })
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cdrmodal" tabindex="-1" role="dialog" aria-labelledby="cdrModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/Bootstrap")
+
+<script>
+    var getPrintLogUrl = '@Url.Action("GetPrintLog", "Home")';
+
+    $(document).ready(function () {
+        $(".cdr-row").on("click", function () {
+            var docNum = $(this).data("document");
+
+            $.ajax({
+                url: getPrintLogUrl,
+                type: "GET",
+                data: { documentNum: docNum },
+                success: function (data) {
+                    $("#cdrmodal .modal-content").html(data);
+                    $("#cdrmodal").modal("show");
+                },
+                error: function () {
+                    alert("Failed to fetch data.");
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,66 @@
+﻿@model cdr_reset.Core.Models.PrintLog
+
+<div class="modal-header">
+    <span class="modal-title">CDR Details</span>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <p><strong>Document Number:</strong> @Model.document_num</p>
+    <p><strong>Business Unit:</strong> @Model.business_unit</p>
+
+    <div class="instruction-container mt-4">
+        <p class="instructions-title text-center"><strong>Instructions</strong></p>
+        <p>1.) Use the Delete Button if both attempts have failed, or if the first attempt fails.</p>
+        <p>2.) Use the Update Button if the first attempt is successful, but the second attempt fails.</p>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" id="UpdateBtn" class="btn btn-success">Update</button>
+    <button type="button" id="DeleteBtn" class="btn btn-danger">Delete</button>
+</div>
+
+<script>
+    var UpdatePrintLog = '@Url.Action("UpdatePrintLog", "Home")';
+    var DeletePrintLog = '@Url.Action("DeletePrintLog", "Home")';
+
+    $(document).ready(function () {
+        $("#UpdateBtn").click(function () {
+            var documentNum = "@Model.document_num";
+            
+            $.ajax({
+                url: UpdatePrintLog,
+                type: 'POST',
+                data: { documentNum: documentNum },
+                success: function (response) {
+                    alert(response.message);
+                    location.reload(); 
+                },
+                error: function () {
+                    alert("Error updating record.");
+                }
+            });
+        });
+
+        $("#DeleteBtn").click(function () {
+            var documentNum = "@Model.document_num"; 
+            
+            if (confirm("Are you sure you want to delete this record?")) {
+                $.ajax({
+                    url: DeletePrintLog,
+                    type: 'POST',
+                    data: { documentNum: documentNum },
+                    success: function (response) {
+                        alert(response.message);
+                        location.reload();
+                    },
+                    error: function () {
+                        alert("Error deleting record.");
+                    }
+                });
+            }
+        });
+    });
+</script>

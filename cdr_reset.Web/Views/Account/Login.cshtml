@@ -1,0 +1,65 @@
+﻿@model cdr_reset.Web.Models.Login
+@{
+    Layout = null;
+    bool hasError = !ViewData.ModelState.IsValid;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @Styles.Render("~/Content/Bootstrap/css")
+    @Styles.Render("~/Content/CSS")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="icon" type="image/x-icon" href="~/Content/Images/favicon.png" />
+
+</head>
+<body>
+    <form method="post">
+        @Html.AntiForgeryToken()
+        <div class="container login-container d-flex justify-content-center align-items-center">
+            <div class="login-box">
+                <!-- Logo -->
+                <div class="arc-logo-container d-flex justify-content-center align-items-center mb-5">
+                    <img src="~/Content/images/full-logo.png" width="450" class="img-fluid" alt="ARC Logo" />
+                </div>
+
+                <!-- Employee Number -->
+                <div class="form-group mb-3">
+                    @Html.TextBoxFor(m => m.Username, new {
+                        @class = "form-control login-input " + (hasError ? "border-danger" : ""),
+                        autocomplete = "off",
+                        type = "Text",
+                        placeholder = " "
+                    })
+
+                    @Html.LabelFor(m => m.Username, new { @class = hasError ? "text-danger" : "" })
+                    @Html.ValidationMessageFor(m => m.Username, "", new { @class = "validation-message text-danger" })
+                </div>
+
+                <!-- Password -->
+                <div class="form-group mb-3">
+                    @Html.TextBoxFor(m => m.Password, new {
+                        @class = "form-control login-input " + (hasError ? "border-danger" : ""),
+                        autocomplete = "off",
+                        type = "Password",
+                        placeholder = " "
+                    })
+
+                    @Html.LabelFor(m => m.Password, new { @class = hasError ? "text-danger" : "" })
+
+
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "validation-message text-danger" })
+                </div>
+
+                @Html.ValidationSummary(true, "", new { @class = "validation-message text-danger" })
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary btn-block login-button">Sign in</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
